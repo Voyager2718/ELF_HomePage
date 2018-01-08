@@ -1,0 +1,45 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Report_bug | {{ productName }}</title>
+    <link rel="stylesheet" href="{% static 'css/sub-pages.css' %}">
+    <script type="text/javascript">
+        var baseDir = "{{ baseDir }}";
+    </script>
+    <script type="text/javascript" src="{% static 'lib/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sub-pages.js' %}"></script>
+</head>
+
+<body>
+    <div id="header">
+        <ul id="header-list">
+            <li>
+                <a href="/home">Home</a>
+            </li>
+            <li>
+                <a href="/bbs">BBS</a>
+            </li>
+            <li>
+                <a href="/downloads">Downloads</a>
+            </li>
+            <li>
+                <a href="/report_bug">Report Bug </a>
+            </li>
+        </ul>
+    </div>
+    <div id="title">
+    </div>
+
+    <div id="body">
+        <div id="container">
+            <p>Sender - Time</p>
+            <p>Body</p>
+            <textarea></textarea>
+            <button>Reply</button>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Downloads | {{ productName }}</title>
+    <link rel="stylesheet" href="{% static 'css/sub-pages.css' %}">
+    <script type="text/javascript">
+        var baseDir = "{{ baseDir }}";
+    </script>
+    <script type="text/javascript" src="{% static 'language/language_pack.js' %}"></script>
+    <script type="text/javascript" src="{% static 'lib/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'lib/angular.js' %}"></script>
+    <script type="text/javascript" src="{% static 'lib/angular-cookies.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sub-pages.js' %}"></script>
+</head>
+
+<body ng-app="app" ng-controller="appCtrl">
+    {% verbatim %}
+    <div id="header">
+        <ul id="header-list">
+            <li>
+                <a href="/home">{{currentLanguage.Home}}</a>
+            </li>
+            <li>
+                <a href="/bbs">{{currentLanguage.BBS}}</a>
+            </li>
+            <li>
+                <a href="/downloads">{{currentLanguage.Downloads}}</a>
+            </li>
+            <li>
+                <a href="/report_bug">{{currentLanguage.ReportBug}}</a>
+            </li>
+        </ul>
+
+        <select ng-change="switchLanguage(displayLang)" ng-model="displayLang">
+            <option value="cht">{{currentLanguage.CHT}}</option>
+            <option value="chs">{{currentLanguage.CHS}}</option>
+            <option value="en">{{currentLanguage.EN}}</option>
+        </select>
+    </div>
+    {% endverbatim %}
+
+    <div id="title">
+    </div>
+
+    <div id="body">
+        <div id="container">
+            <p>Test</p>
+        </div>
+    </div>
+
+</body>
+
+</html>
