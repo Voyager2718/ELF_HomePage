@@ -7,9 +7,10 @@ urlpatterns = [
     url(r'^bbs/$', view.bbs),
     url(r'^downloads/$', view.downloads),
     url(r'^report_bug/$', view.report_bug),
-    url(r'^topic/([a-zA-Z0-9]*)/$', view.topic),
 
     url(r'^redirect/([a-zA-Z0-9\-\_\.]*)/$', view.redirect),
     url(r'^api/([a-zA-Z0-9\-\_\.]*)/$', view.api),
     url(r'^activate/([a-zA-Z0-9\-]*)/([a-zA-Z0-9\-]*)/$', view.activate),
+
+    url(r'^$', view.home)
 ]

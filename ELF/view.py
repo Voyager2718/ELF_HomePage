@@ -47,11 +47,6 @@ def report_bug(request):
     return render(request, "Pages/report_bug/report_bug.html", updateDictionary(generalContext, context))
 
 
-def topic(request, topic_id):
-    context = {}
-    return render(request, "Pages/topic/topic.html", updateDictionary(generalContext, context))
-
-
 '''
 API
 '''
