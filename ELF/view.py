@@ -29,27 +29,27 @@ def hello(request):
 
 def home(request):
     context = {}
-    return render(request, "home/home.html", updateDictionary(generalContext, context))
+    return render(request, "Pages/home/home.html", updateDictionary(generalContext, context))
 
 
 def bbs(request):
     context = {}
-    return render(request, "bbs/bbs.html", updateDictionary(generalContext, context))
+    return render(request, "Pages/bbs/bbs.html", updateDictionary(generalContext, context))
 
 
 def downloads(request):
     context = {}
-    return render(request, "downloads/downloads.html", updateDictionary(generalContext, context))
+    return render(request, "Pages/downloads/downloads.html", updateDictionary(generalContext, context))
 
 
 def report_bug(request):
     context = {}
-    return render(request, "report_bug/report_bug.html", updateDictionary(generalContext, context))
+    return render(request, "Pages/report_bug/report_bug.html", updateDictionary(generalContext, context))
 
 
 def topic(request, topic_id):
     context = {}
-    return render(request, "topic/topic.html", updateDictionary(generalContext, context))
+    return render(request, "Pages/topic/topic.html", updateDictionary(generalContext, context))
 
 
 '''

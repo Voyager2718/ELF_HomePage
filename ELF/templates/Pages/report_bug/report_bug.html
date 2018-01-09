@@ -1,0 +1,16 @@
+{% extends "SubPagePattern/Pattern1.html" %} {% block body %}
+<div id="container">
+    <h1>Submit a bug or a suggestion</h1>
+    <p>Test information:</p>
+    <textarea placeholder="Which OS did you use? Which game version were you using when you hit this bug?"></textarea>
+    <p>
+        <span class="important-message">*</span> Bug descryption:</p>
+    <textarea placeholder="When do you hit this bug? How to reproduce this bug?"></textarea>
+    <p>Subscribe this bug:</p>
+    <form>
+        <input type="text" class="text-input" placeholder="E-mail address" />
+    </form>
+    <p class="important-message">Before you submit this bug, make sure that it does not exists please.</p>
+    <button>Submit</button>
+</div>
+{% endblock %}
