@@ -1,5 +1,8 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, Http404
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
+from ELF_Model.models import *
+import api
 import os
 
 generalContext = {
@@ -57,11 +60,25 @@ def redirect(request, target):
     return HttpResponse("Hyperlink invalid.", updateDictionary(generalContext, context))
 
 
-def api(request, api):
-    context = {}
-    return HttpResponse("API not supported.", updateDictionary(generalContext, context))
+@csrf_exempt
+def api_distribute(request, api_name):
+    try:
+        return {
+            'GetBugPost': api.GetBugPost,
+        }[api_name](request)
+    except KeyError:
+        raise Http404("API not found")
 
 
 def activate(request, activationCode, deviceCode):
     context = {}
     return HttpResponse("Invalid activation code.")
+
+
+'''
+Test
+'''
+
+
+def dbtest(request):
+    return HttpResponse('None')
