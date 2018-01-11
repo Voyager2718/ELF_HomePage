@@ -57,9 +57,7 @@ app.controller('appCtrl', ['$scope', '$cookies', function ($scope, $cookies) {
     $scope.i18n = new function () {
         this.render = () => {
             var lang = $cookies.get('Language');
-            console.log("lang",lang);
             $scope.currentLanguage = language_pack[lang];
-            console.log("$scope.currentLanguage",$scope.currentLanguage);
             $scope.displayLang = lang;
             if ($scope.currentLanguage == undefined) {
 
