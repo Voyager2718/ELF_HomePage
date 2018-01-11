@@ -6,14 +6,6 @@ from django.db import models
 # Create your models here.
 
 
-class Users(models.Model):
-    # Specify if user is blocked or not.
-    blocked = models.BooleanField(default=False)
-    username = models.CharField(max_length=32)
-    password = models.CharField(max_length=32)
-    user_role = models.CharField(max_length=32, default='Users')
-
-
 class Product(models.Model):
     product_id = models.IntegerField()              # Product ID
     # When does the product stop supporting.

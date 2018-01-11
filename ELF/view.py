@@ -1,9 +1,13 @@
 from django.http import HttpResponse, JsonResponse, Http404
-from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
+
+# csrf
+from django.views.decorators.csrf import csrf_exempt
+
+import os
+
 from ELF_Model.models import *
 import api
-import os
 
 generalContext = {
     "productName": "ELF",
@@ -65,6 +69,7 @@ def api_distribute(request, api_name):
     try:
         return {
             'GetBugPost': api.GetBugPost,
+            'CreateUser': api.CreateUser,
         }[api_name](request)
     except KeyError:
         raise Http404("API not found")
@@ -72,6 +77,7 @@ def api_distribute(request, api_name):
 
 def activate(request, activationCode, deviceCode):
     context = {}
+    return HttpResponse(activationCode)
     return HttpResponse("Invalid activation code.")
 
 
@@ -80,5 +86,5 @@ Test
 '''
 
 
-def dbtest(request):
-    return HttpResponse('None')
+def test(request, user, password):
+    return HttpResponse('Nothing to show.')

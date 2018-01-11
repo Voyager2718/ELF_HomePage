@@ -79,8 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ELF',
-        'USER': 'elf_admin',
-        'PASSWORD': 'Test1234',
+        'USER': 'elf_admin',        # Fixme: Modify when upload to production env.
+        'PASSWORD': 'Test1234',     # Fixme: Modify when upload to production env.
         'HOST': 'localhost',
         'PORT': 3306,
     }

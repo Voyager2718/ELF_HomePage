@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^api/([a-zA-Z0-9\-\_\.]*)/$', view.api_distribute),
     url(r'^activate/([a-zA-Z0-9\-]*)/([a-zA-Z0-9\-]*)/$', view.activate),
 
-    url(r'dbtest/$', view.dbtest),
+    url(r'^test/([a-zA-Z0-9]*)/([a-zA-Z0-9]*)/$', view.test),
 
     url(r'^$', view.home)
 ]
