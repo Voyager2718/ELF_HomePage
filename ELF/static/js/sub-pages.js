@@ -57,11 +57,25 @@ app.controller('appCtrl', ['$scope', '$cookies', function ($scope, $cookies) {
     $scope.i18n = new function () {
         this.render = () => {
             var lang = $cookies.get('Language');
-            $scope.currentLanguage = language_pack[lang]
+            console.log("lang",lang);
+            $scope.currentLanguage = language_pack[lang];
+            console.log("$scope.currentLanguage",$scope.currentLanguage);
             $scope.displayLang = lang;
             if ($scope.currentLanguage == undefined) {
-                $scope.currentLanguage = language_pack['en']
-                $scope.displayLang = 'en';
+
+                $scope.browserLanguage=(window.navigator.languages
+                    ? window.navigator.languages[0]
+                    : (window.navigator.language || window.navigator.userLanguage)).substr(0,2);
+
+                    switch($scope.browserLanguage){
+                        case "zh-c": $scope.currentLanguage = language_pack['chs'] ; break;
+                        case "zh": $scope.currentLanguage = language_pack['cht'] ; break
+                        case "en": $scope.currentLanguage = language_pack['en'] ; break;
+                        case "fr": $scope.currentLanguage = language_pack['fr'] ; break;
+                        default  : $scope.currentLanguage = language_pack['en'] ; break;
+                    }
+               
+                $scope.displayLang = $scope.currentLanguage;
             }
         }
 
