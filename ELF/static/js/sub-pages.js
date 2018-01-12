@@ -47,6 +47,8 @@ window.onscroll = function (e) {
 
 var app = angular.module('app', ['ngCookies']);
 
+
+
 app.controller('appCtrl', ['$scope', '$cookies', function ($scope, $cookies) {
     $scope.currentLanguage = {};
     $scope.language_pack;
@@ -65,7 +67,9 @@ app.controller('appCtrl', ['$scope', '$cookies', function ($scope, $cookies) {
         }
 
         this.setLanguange = (lang) => {
-            $cookies.put('Language', lang);
+            var expireDate = new Date();
+            expireDate.setTime(2144232732000);
+            $cookies.put('Language', lang, { 'path': '/', 'expires': expireDate });
             this.render();
         }
 
