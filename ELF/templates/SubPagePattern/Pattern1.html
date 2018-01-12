@@ -33,7 +33,7 @@
             </li>
         </ul>
 
-        <select ng-change="switchLanguage(displayLang)" ng-model="displayLang">
+        <select ng-change="switchLanguage(displayLang)" ng-model="displayLang" ng-cloak>
             <option ng-repeat="(lang, values) in language_pack" value="{{values.id}}" ng-cloak>{{values.text}}</option>
         </select>
     </div>

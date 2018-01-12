@@ -70,6 +70,8 @@ def api_distribute(request, api_name):
         return {
             'GetBugPost': api.GetBugPost,
             'CreateUser': api.CreateUser,
+            'Login': api.Login,
+            'Logout': api.Logout,
         }[api_name](request)
     except KeyError:
         raise Http404("API not found")

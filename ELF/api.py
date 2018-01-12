@@ -1,9 +1,11 @@
 from django.http import HttpResponse, JsonResponse, Http404, HttpResponseForbidden
 
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
 
 from django.views.decorators.csrf import csrf_exempt
+
+from django.core.exceptions import PermissionDenied
 
 import json
 import re
@@ -11,14 +13,6 @@ import re
 from status_code import *
 
 
-@csrf_exempt
-def GetBugPost(request):
-    if(request.is_ajax() and request.method == 'POST'):
-        return HttpResponse(request.body)
-    raise Http404('No data in request.')
-
-
-@csrf_exempt
 def CreateUser(request):
     if(request.is_ajax() and request.method == 'POST'):
         try:
@@ -32,9 +26,43 @@ def CreateUser(request):
                 return JsonResponse(getStatusJson(1000))
             except User.DoesNotExist:
                 user = User.objects.create_user(
-                    username=body['username'], password=body['password'])
+                    username=body['username'], password=body['password'], email=body['email'])
                 user.save()
+                user = authenticate(
+                    request, username=body['username'], password=body['password'])
+                login(request, user)
                 return JsonResponse(getStatusJson(200))
         except:
             return HttpResponseForbidden()
-    return HttpResponseForbidden('Request without proper data.')
+    return HttpResponseForbidden()
+
+
+def Login(request):
+    if(request.is_ajax() and request.method == 'POST'):
+        try:
+            body = json.loads(request.body)
+            user = authenticate(
+                request, username=body['username'], password=body['password'])
+            if user is not None:
+                login(request, user)
+                return JsonResponse(getStatusJson(200))
+            else:
+                return JsonResponse(getStatusJson(1003))
+        except PermissionDenied:
+            return JsonResponse(getStatusJson(1004))
+        except:
+            return HttpResponseForbidden()
+
+
+def Logout(request):
+    try:
+        logout(request)
+        return JsonResponse(getStatusJson(200))
+    except:
+        return HttpResponseForbidden()
+
+
+def GetBugPost(request):
+    if(request.is_ajax() and request.method == 'POST'):
+        return HttpResponse(request.body)
+    raise Http404('No data in request.')
