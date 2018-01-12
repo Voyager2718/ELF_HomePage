@@ -35,22 +35,22 @@ def hello(request):
 
 
 def home(request):
-    context = {}
+    context = {"pageTitle": "Home"}
     return render(request, "Pages/home/home.html", updateDictionary(generalContext, context))
 
 
 def bbs(request):
-    context = {}
+    context = {"pageTitle": "BBS"}
     return render(request, "Pages/bbs/bbs.html", updateDictionary(generalContext, context))
 
 
 def downloads(request):
-    context = {}
+    context = {"pageTitle": "Downloads"}
     return render(request, "Pages/downloads/downloads.html", updateDictionary(generalContext, context))
 
 
 def report_bug(request):
-    context = {}
+    context = {"pageTitle": "Report a bug"}
     return render(request, "Pages/report_bug/report_bug.html", updateDictionary(generalContext, context))
 
 
@@ -61,7 +61,7 @@ API
 
 def redirect(request, target):
     context = {}
-    return HttpResponse("Hyperlink invalid.", updateDictionary(generalContext, context))
+    raise Http404('Redirection nout found.')
 
 
 @csrf_exempt
@@ -74,7 +74,7 @@ def api_distribute(request, api_name):
             'Logout': api.Logout,
         }[api_name](request)
     except KeyError:
-        raise Http404("API not found")
+        raise Http404("API not found.")
 
 
 def activate(request, activationCode, deviceCode):
