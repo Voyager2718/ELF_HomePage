@@ -49,37 +49,34 @@ var app = angular.module('app', ['ngCookies']);
 
 app.controller('appCtrl', ['$scope', '$cookies', function ($scope, $cookies) {
     $scope.currentLanguage = {};
+    $scope.language_pack;
 
     $scope.init = () => {
         $scope.i18n.render();
+        $scope.language_pack = language_pack;   // Import language file to $scope
     }
 
     $scope.i18n = new function () {
         this.render = () => {
-            var lang = $cookies.get('Language');
-            $scope.currentLanguage = language_pack[lang];
+            var lang = $cookies.get('Language')
+            lang = lang == undefined ? getDefaultLanguage() : lang;
+            $scope.currentLanguage = language_pack[lang]
             $scope.displayLang = lang;
-            if ($scope.currentLanguage == undefined) {
-
-                $scope.browserLanguage=(window.navigator.languages
-                    ? window.navigator.languages[0]
-                    : (window.navigator.language || window.navigator.userLanguage)).substr(0,2);
-
-                    switch($scope.browserLanguage){
-                        case "zh-c": $scope.currentLanguage = language_pack['chs'] ; break;
-                        case "zh": $scope.currentLanguage = language_pack['cht'] ; break
-                        case "en": $scope.currentLanguage = language_pack['en'] ; break;
-                        case "fr": $scope.currentLanguage = language_pack['fr'] ; break;
-                        default  : $scope.currentLanguage = language_pack['en'] ; break;
-                    }
-               
-                $scope.displayLang = $scope.currentLanguage;
-            }
         }
 
         this.setLanguange = (lang) => {
             $cookies.put('Language', lang);
             this.render();
+        }
+
+        var getDefaultLanguage = () => {
+            var browserLang = navigator.language;
+            for (k in language_pack) {
+                if (language_pack[k].compatible.indexOf(browserLang) >= 0) {
+                    return language_pack[k].id;
+                }
+            }
+            return language_pack[Object.keys(language_pack)[0]].id;
         }
     }
 

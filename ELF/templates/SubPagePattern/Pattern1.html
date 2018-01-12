@@ -32,22 +32,32 @@
                 <a href="/report_bug">{{currentLanguage.ReportBug}}</a>
             </li>
         </ul>
+      
 
-        <select ng-change="switchLanguage(displayLang)" ng-model="displayLang">
-            <option value="cht">{{currentLanguage.CHT}}</option>
-            <option value="chs">{{currentLanguage.CHS}}</option>
-            <option value="en">{{currentLanguage.EN}}</option>
+        <select id="language-select" ng-change="switchLanguage(displayLang)" ng-model="displayLang">
+            <option ng-repeat="(lang, values) in language_pack" value="{{values.id}}">{{values.text}}</option>
         </select>
+
+        <ul id="indivdual-list">
+            <li>
+                  <div class="img-container">
+                          <a href="/individual_account">
+                          <img id="default_avatar" src="{% static 'img/default_avatar.png' %}" />
+                   </div>
+
+            </li>
+              
+         </ul>
     </div>
     {% endverbatim %}
 
     <div id="title">
+          
     </div>
 
     <div id="body">
-        <div id="container">
-            <p>Test</p>
-        </div>
+        {% block body %}
+        {% endblock %}
     </div>
 
 </body>

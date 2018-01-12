@@ -37,7 +37,14 @@ a{
     height: 30%;
     width: 100%;
 }
-
+#title li {
+    font-size: 18px;
+    color: black;
+    position: absolute;
+    right: 6em;
+    top: 1em;
+    z-index: 100;
+}
 
 #body{
     position: absolute;
@@ -113,4 +120,9 @@ textarea{
     right: 10px;
     top: 10px;
     z-index: 100;
+}
+
+#default_avatar{
+    width: 30px;
+    height: 30px;
 }
