@@ -16,8 +16,9 @@
 </head>
 
 <body ng-app="app" ng-controller="appCtrl">
-    {% verbatim %}
+    
     <div id="header">
+            {% verbatim %}
         <ul id="header-list">
             <li>
                 <a href="/home">{{currentLanguage.Home}}</a>
@@ -37,19 +38,23 @@
         <select id="language-select" ng-change="switchLanguage(displayLang)" ng-model="displayLang">
             <option ng-repeat="(lang, values) in language_pack" value="{{values.id}}">{{values.text}}</option>
         </select>
+        {% endverbatim %}
 
         <ul id="indivdual-list">
             <li>
-                  <div class="img-container">
-                          <a href="/individual_account">
-                          <img id="default_avatar" src="{% static 'img/default_avatar.png' %}" />
-                   </div>
+                <div class="img-container">
+                    <a href="/individual_account" >
+                        <img id="default_avatar" src="{% static 'img/default_avatar.png' %}" />
+                    </a>
+                </div>
 
             </li>
               
          </ul>
+
+        
     </div>
-    {% endverbatim %}
+   
 
     <div id="title">
           
