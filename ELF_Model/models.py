@@ -38,3 +38,17 @@ class BugSubscription(models.Model):
     bug_id = models.IntegerField()                  # Bug ID.
     # User ID who subscribe the bug.
     user_id = models.IntegerField()
+
+
+class Post(models.Model):
+    post_sent_by_uid = models.IntegerField()
+    post_title = models.CharField(max_length=256)
+    post_sent_time = models.DateTimeField()
+    post_body = models.TextField(max_length=65535)
+
+
+class Reply(models.Model):
+    origin_post_id = models.IntegerField()
+    reply_sent_by_uid = models.IntegerField()
+    reply_body = models.TextField(max_length=65535)
+    reply_sent_time = models.DateTimeField()
