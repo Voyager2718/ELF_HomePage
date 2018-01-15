@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 import os
 
 from ELF_Model.models import *
-import api
+import ELF.api
 
 generalContext = {
     "productName": "ELF",
