@@ -52,6 +52,7 @@ def Login(request):
             return JsonResponse(getStatusJson(1004))
         except:
             return HttpResponseForbidden()
+    return HttpResponseForbidden()
 
 
 def Logout(request):
@@ -65,4 +66,4 @@ def Logout(request):
 def GetBugPost(request):
     if(request.is_ajax() and request.method == 'POST'):
         return HttpResponse(request.body)
-    raise Http404('No data in request.')
+    return HttpResponseForbidden()
