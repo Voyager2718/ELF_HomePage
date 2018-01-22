@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ELF_Model',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'ELF.urls'
 
@@ -76,8 +78,12 @@ WSGI_APPLICATION = 'ELF.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ELF',
+        'USER': 'root',        # Fixme: Modify when upload to production env.
+        'PASSWORD': 'MyNewPass',     # Fixme: Modify when upload to production env.
+        'HOST': 'localhost',
+        'PORT': 3306,
     }
 }
 

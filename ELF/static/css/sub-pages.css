@@ -125,8 +125,16 @@ textarea{
 #default_avatar{
     width: 30px;
     height: 30px;
+    position: absolute;
+    right: 5%;
+    top: 23%;
 }
 
 #indivdual-list li{
     list-style: none;
+}
+#language_select{
+    position: absolute;
+    right: 10%;
+    top: 32%;
 }

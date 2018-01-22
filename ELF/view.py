@@ -1,6 +1,13 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, Http404
 from django.shortcuts import render
+
+# csrf
+from django.views.decorators.csrf import csrf_exempt
+
 import os
+
+from ELF_Model.models import *
+import api
 
 generalContext = {
     "productName": "ELF",
@@ -50,6 +57,17 @@ def individual_account(request):
     context = {}
     return render(request, "Individual_account/individual_account.html", updateDictionary(generalContext, context))
 
+def login(request):
+    context = {}
+    return render(request, "Authentication/login.html", updateDictionary(generalContext, context))
+
+def register(request):
+    context = {}
+    return render(request, "Authentication/register.html", updateDictionary(generalContext, context))
+def reset_password(request):
+    context = {}
+    return render(request, "Authentication/reset_password.html", updateDictionary(generalContext, context))
+
 '''
 API
 '''
@@ -60,11 +78,29 @@ def redirect(request, target):
     return HttpResponse("Hyperlink invalid.", updateDictionary(generalContext, context))
 
 
-def api(request, api):
-    context = {}
-    return HttpResponse("API not supported.", updateDictionary(generalContext, context))
+@csrf_exempt
+def api_distribute(request, api_name):
+    try:
+        return {
+            'GetBugPost': api.GetBugPost,
+            'CreateUser': api.CreateUser,
+            'Login': api.Login,
+            'Logout': api.Logout,
+        }[api_name](request)
+    except KeyError:
+        raise Http404("API not found")
 
 
 def activate(request, activationCode, deviceCode):
     context = {}
+    return HttpResponse(activationCode)
     return HttpResponse("Invalid activation code.")
+
+
+'''
+Test
+'''
+
+
+def test(request, user, password):
+    return HttpResponse('Nothing to show.')

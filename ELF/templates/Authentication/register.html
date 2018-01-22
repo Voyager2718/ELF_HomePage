@@ -1,0 +1,84 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title ng-cloak>Register | {{ productName }}</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <script type="text/javascript">
+        var baseDir = "{{ baseDir }}";
+    </script>
+    <script type="text/javascript" src="{% static 'language/language_pack.js' %}"></script>
+    <script type="text/javascript" src="{% static 'lib/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'lib/angular.js' %}"></script>
+    <script type="text/javascript" src="{% static 'lib/angular-cookies.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sub-pages.js' %}"></script>
+</head>
+
+<body ng-app="account" ng-controller="accountCtrl">
+    <script type="text/javascript">
+        var app = angular.module('account', []);
+
+        app.controller('accountCtrl', ['$scope', function ($scope) {
+            $scope.register = () => {
+                var d = {
+                    username: $scope.username,
+                    password: $scope.password,
+                    email: $scope.email
+                };
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/api/CreateUser/',
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(d),
+                    dataType: 'text',
+                    success: function (result) {
+                        if (result['status'] == 200) {
+                            alert('Success');
+                        } else {
+                            console.log(result);
+                        }
+                    }
+                });
+            }
+
+
+
+        }])
+    </script>
+
+    <div class="auth-form-header ">
+        <h1>Welcome to Sign up to WK Game</h1>
+    </div>
+    <div class=auth-form>
+        <form>{% csrf_token %}
+            <div class="auth-form-body">
+                <label for="login_field">
+                    Username
+                </label>
+                <input autocapitalize="off" autocorrect="off" autofocus="autofocus" class="form-control input-block" id="login_field" name="login"
+                    tabindex="1" type="text" ng-model="username">
+                <label for="login_field">
+                    Email
+                </label>
+                <input autocapitalize="off" autocorrect="off" autofocus="autofocus" class="form-control input-block" id="login_field" name="login"
+                    tabindex="1" type="email" ng-model="email">
+
+                <label for="password">
+                    Password
+                </label>
+                <input class="form-control  input-block" id="password" name="password" tabindex="2" type="password" ng-model="password">
+
+                <input class="btn btn-primary btn-block" data-disable-with="Signing up…" name="commit" tabindex="3" type="submit" value="Sign in"
+                    ng-click="register()">
+
+
+            </div>
+        </form>
+
+    </div>
+
+
+</body>
+
+</html>

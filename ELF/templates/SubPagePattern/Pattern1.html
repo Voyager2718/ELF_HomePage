@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Downloads | {{ productName }}</title>
+    <title ng-cloak>Downloads | {{ productName }}</title>
     <link rel="stylesheet" href="{% static 'css/sub-pages.css' %}">
     <script type="text/javascript">
         var baseDir = "{{ baseDir }}";
@@ -21,35 +21,33 @@
             {% verbatim %}
         <ul id="header-list">
             <li>
-                <a href="/home">{{currentLanguage.Home}}</a>
+                <a href="/home" ng-cloak>{{currentLanguage.Home}}</a>
             </li>
             <li>
-                <a href="/bbs">{{currentLanguage.BBS}}</a>
+                <a href="/bbs" ng-cloak>{{currentLanguage.BBS}}</a>
             </li>
             <li>
-                <a href="/downloads">{{currentLanguage.Downloads}}</a>
+                <a href="/downloads" ng-cloak>{{currentLanguage.Downloads}}</a>
             </li>
             <li>
-                <a href="/report_bug">{{currentLanguage.ReportBug}}</a>
+                <a href="/report_bug" ng-cloak>{{currentLanguage.ReportBug}}</a>
             </li>
         </ul>
       
 
-        <select id="language-select" ng-change="switchLanguage(displayLang)" ng-model="displayLang">
-            <option ng-repeat="(lang, values) in language_pack" value="{{values.id}}">{{values.text}}</option>
+        <select id="language_select" ng-change="switchLanguage(displayLang)" ng-model="displayLang" ng-cloak>
+            <option ng-repeat="(lang, values) in language_pack" value="{{values.id}}" ng-cloak>{{values.text}}</option>
         </select>
         {% endverbatim %}
 
         <ul id="indivdual-list">
             <li>
                 <div class="img-container">
-                    <a href="/individual_account" >
+                    <a href="/login" >
                         <img id="default_avatar" src="{% static 'img/default_avatar.png' %}" />
                     </a>
                 </div>
-
             </li>
-              
          </ul>
 
         
@@ -61,8 +59,7 @@
     </div>
 
     <div id="body">
-        {% block body %}
-        {% endblock %}
+        {% block body %} {% endblock %}
     </div>
 
 </body>

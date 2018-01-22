@@ -47,6 +47,8 @@ window.onscroll = function (e) {
 
 var app = angular.module('app', ['ngCookies']);
 
+
+
 app.controller('appCtrl', ['$scope', '$cookies', function ($scope, $cookies) {
     $scope.currentLanguage = {};
     $scope.language_pack;
@@ -65,7 +67,9 @@ app.controller('appCtrl', ['$scope', '$cookies', function ($scope, $cookies) {
         }
 
         this.setLanguange = (lang) => {
-            $cookies.put('Language', lang);
+            var expireDate = new Date();
+            expireDate.setTime(2144232732000);
+            $cookies.put('Language', lang, { 'path': '/', 'expires': expireDate });
             this.render();
         }
 
@@ -82,6 +86,25 @@ app.controller('appCtrl', ['$scope', '$cookies', function ($scope, $cookies) {
 
     $scope.switchLanguage = (lang) => {
         $scope.i18n.setLanguange(lang)
+    }
+
+    $scope.credentials = {
+        username : '',
+        password : ''
+   }; 
+   $scope.username="";
+   $scope.userpwd="";
+  // $scope.login=function(){
+  //     if($scope.username==""||$scope.userpwd==""){
+  //         alert("信息未输入完整");
+  //     }else{
+   //        console.log("去登陆");
+   //    }
+  //}
+
+    $scope.login = () =>{
+        console.log("1111");
+        
     }
 
     $scope.init();
